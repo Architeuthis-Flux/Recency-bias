@@ -96,16 +96,6 @@ Command line alternative:
 code --install-extension recency-bias-*.vsix
 ```
 
-## Packaging and publishing
-
-Build the VSIX package:
-
-```bash
-npx --yes vsce package
-```
-
-
-
 
 
 
