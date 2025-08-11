@@ -5,6 +5,14 @@
   "version": "0.0.1",
   "publisher": "Architeuthis-Flux",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Architeuthis-Flux/Recency-bias"
+  },
+  "homepage": "https://github.com/Architeuthis-Flux/Recency-bias#readme",
+  "bugs": {
+    "url": "https://github.com/Architeuthis-Flux/Recency-bias/issues"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },

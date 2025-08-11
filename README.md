@@ -81,6 +81,31 @@ Notes:
 - Background target clamps saturation and lightness to 0.4, and alpha to 0.4, to avoid overpowering themes.
 - Repo relative scope ranks commit order across all visible editors; file scope ranks within each file.
 
+## Install from a VSIX file
+
+If you downloaded a `.vsix` file (e.g., from GitHub Releases):
+
+1) Open VS Code → Extensions view
+2) Click the "…" menu in the top-right → Install from VSIX…
+3) Select the downloaded `.vsix` file
+4) Reload when prompted
+
+Command line alternative:
+
+```bash
+code --install-extension recency-bias-*.vsix
+```
+
+## Packaging and publishing
+
+Build the VSIX package:
+
+```bash
+npx --yes vsce package
+```
+
+
+
 
 
 
