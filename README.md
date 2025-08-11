@@ -8,6 +8,32 @@ It goes through your git blame history and makes a gradient based on how far dow
 
 This is just a vibe coded thing I wanted while I was working on something else, it's not meant to be on all the time, but it puts a little button to toggle it from New -> Old -> Off so you can quickly check the relative time your code was committed. Kinda handy.
 
+
+## Commands
+
+- Recency Bias: Recompute Decorations
+  - Forces a fresh Git blame seed and reapplies decorations for all visible editors.
+
+- Recency Bias: Toggle Foreground/Background
+  - Switches `recencyBias.colorTarget` between `foreground` and `background` and rebuilds the palette.
+
+- Recency Bias: Cycle Off/On/Reverse
+  - Cycles status: `Off` → `New` → `Old`.
+  - Like pushing the Status Bar Button, but with text
+
+- Recency Bias: Reverse 
+  - Switches from emphasizing newest to oldest code
+
+## Status Bar Button
+
+- Shows “Recency: Off/New/Old”. Click to run Cycle Off/On/Reverse.
+- Behavior mapping:
+  - `Off`: `enabled: false` (decorations cleared)
+  - `New`: `enabled: true`, highlights newest code (in pink by default)
+  - `Old`: `enabled: true`, reverse flags to highlight oldest code (blue by default)
+
+
+
 ## Settings
 
 You can add any of these to your settings.json to change them (these are the defautls shown here.)
@@ -20,12 +46,12 @@ You can add any of these to your settings.json to change them (these are the def
   "recencyBias.mode": "commitOrder",          // "time" | "commitOrder"
   "recencyBias.colorMode": "hueCycle",        // "tint" | "hueCycle"
 
-  "recencyBias.relativeScope": "file",        // "file" | "repo"
+
   "recencyBias.colorTarget": "foreground",    // "foreground" | "background"
 
-  "recencyBias.reverseHue": false,
-  "recencyBias.newHue": 325,
-  "recencyBias.oldHue": 180,
+  "recencyBias.reverseHue": false,            // changes the direction the colors cycle around the color circle
+  "recencyBias.newHue": 325,                  // pink
+  "recencyBias.oldHue": 180,                  // blue
   "recencyBias.hueCurve": "linear",           // "linear" | "log" | "revlog"
 
   "recencyBias.maxSaturation": 1,
@@ -46,23 +72,14 @@ You can add any of these to your settings.json to change them (these are the def
 
   "recencyBias.useAlphaFade": true,
   "recencyBias.debugLogging": false,
-  "recencyBias.useGitBlame": true
+  "recencyBias.useGitBlame": true,
+  "recencyBias.relativeScope": "file",        // "file" | "repo" 
 }
 ```
 
 Notes:
-- New/Old/Off button in the status bar cycles emphasis. “Old” makes oldest stand out (reverses alpha/saturation/lightness). “New” emphasizes newer lines.
 - Background target clamps saturation and lightness to 0.4, and alpha to 0.4, to avoid overpowering themes.
 - Repo relative scope ranks commit order across all visible editors; file scope ranks within each file.
-
-## Commands
-
-- Recency Bias: Recompute Decorations
-- Recency Bias: Toggle Foreground/Background
-- Recency Bias: Cycle Off/On/Reverse
-- Recency Bias: Toggle Reverse (Oldest Stand Out)
-
-
 
 
 
