@@ -1,0 +1,11 @@
+**/.vscode/**
+**/.git/**
+**/.github/**
+**/node_modules/**
+**/src/**
+**/tsconfig.json
+**/.eslintrc.*
+**/.prettierrc*
+**/.DS_Store
+
+

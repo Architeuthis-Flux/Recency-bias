@@ -1,0 +1,217 @@
+{
+  "name": "recency-bias",
+  "displayName": "Recency Bias",
+  "description": "Tints code based on how recently it was edited.",
+  "version": "0.0.1",
+  "publisher": "Architeuthis-Flux",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "recencyBias.toggle",
+        "title": "Recency Bias: Toggle"
+      },
+      {
+        "command": "recencyBias.recompute",
+        "title": "Recency Bias: Recompute"
+      },
+      {
+        "command": "recencyBias.toggleColorTarget",
+        "title": "Recency Bias: Toggle Foreground/Background"
+      },
+      {
+        "command": "recencyBias.cycleToggle",
+        "title": "Recency Bias: Cycle Off/On/Reverse"
+      },
+      {
+        "command": "recencyBias.toggleReverseAll",
+        "title": "Recency Bias: Reverse"
+      }
+    ],
+    "configuration": {
+      "title": "Recency Bias",
+      "properties": {
+        "recencyBias.mode": {
+          "type": "string",
+          "default": "commitOrder",
+          "enum": ["time", "commitOrder"],
+          "description": "How to compute recency: 'time' uses last edit age; 'commitOrder' ranks commits and colors by introduction order."
+        },
+        "recencyBias.relativeScope": {
+          "type": "string",
+          "default": "file",
+          "enum": ["file", "repo"],
+          "description": "Compute recency relative to a single file or across all visible files (repo scope)."
+        },
+        "recencyBias.colorMode": {
+          "type": "string",
+          "default": "hueCycle",
+          "enum": ["tint", "hueCycle"],
+          "description": "Color strategy: 'tint' uses a single color fade; 'hueCycle' cycles hue from startHue to endHue."
+        },
+        "recencyBias.colorTarget": {
+          "type": "string",
+          "default": "foreground",
+          "enum": ["foreground", "background"],
+          "description": "Apply color to the text foreground or as a background tint."
+        },
+        "recencyBias.newHue": {
+          "type": "number",
+          "default": 325,
+          "minimum": 0,
+          "maximum": 360,
+          "description": "Hue for the newest lines (degrees)."
+        },
+        "recencyBias.oldHue": {
+          "type": "number",
+          "default": 180,
+          "minimum": 0,
+          "maximum": 360,
+          "description": "Hue for the oldest lines (degrees)."
+        },
+        "recencyBias.hueCurve": {
+          "type": "string",
+          "default": "linear",
+          "enum": ["linear", "log", "revlog"],
+          "description": "Curve for hue interpolation between newHue and oldHue."
+        },
+        "recencyBias.reverseHue": {
+            "type": "boolean",
+            "default": false,
+            "description": "Reverse the hue progression between newHue and oldHue (only for hueCycle)."
+          },
+
+        "recencyBias.minSaturation": {
+          "type": "number",
+          "default": 0.15,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum saturation across age (0..1)."
+        },
+        "recencyBias.maxSaturation": {
+          "type": "number",
+          "default": 1.0,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Maximum saturation across age (0..1)."
+        },
+        "recencyBias.reverseSaturation": {
+          "type": "boolean",
+          "default": false,
+          "description": "Reverse saturation mapping newest/oldest."
+        },
+        "recencyBias.saturationCurve": {
+          "type": "string",
+          "default": "revlog",
+          "enum": ["linear", "log", "revlog"],
+          "description": "Curve for saturation mapping across age."
+        },
+        "recencyBias.minLightness": {
+          "type": "number",
+          "default": 0.44,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum lightness across age (0..1)."
+        },
+        "recencyBias.maxLightness": {
+          "type": "number",
+          "default": 0.72,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Maximum lightness across age (0..1)."
+        },
+        "recencyBias.reverseLightness": {
+          "type": "boolean",
+          "default": false,
+          "description": "Reverse lightness mapping newest/oldest."
+        },
+        "recencyBias.lightnessCurve": {
+          "type": "string",
+          "default": "revlog",
+          "enum": ["linear", "log", "revlog"],
+          "description": "Curve for lightness mapping across age."
+        },
+        "recencyBias.minAlpha": {
+            "type": "number",
+            "default": 0.7,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Minimum alpha at one end of the age range."
+          },
+          "recencyBias.maxAlpha": {
+            "type": "number",
+            "default": 1,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Maximum tint opacity for the newest edits (0..1)."
+          },
+          "recencyBias.reverseAlpha": {
+            "type": "boolean",
+            "default": false,
+            "description": "Reverse the alpha mapping so newest vs oldest swap."
+          },
+          "recencyBias.alphaCurve": {
+            "type": "string",
+            "default": "log",
+            "enum": ["linear", "log", "revlog"],
+            "description": "Curve for alpha mapping across age: linear, log (slow start), or revlog (fast start)."
+          },
+
+        "recencyBias.useAlphaFade": {
+          "type": "boolean",
+          "default": true,
+          "description": "When true, older steps have lower alpha; when false, all steps use maxAlpha."
+        },
+        "recencyBias.debugLogging": {
+          "type": "boolean",
+          "default": true,
+          "description": "Log debug info to the 'Recency Bias' output channel."
+        },
+        "recencyBias.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable recency highlighting."
+        },
+        "recencyBias.maxAgeMinutes": {
+          "type": "number",
+          "default": 50000,
+          "minimum": 1,
+          "description": "Age in minutes after which lines are considered old and receive no tint."
+        },
+        "recencyBias.updateIntervalMs": {
+          "type": "integer",
+          "default": 1500,
+          "minimum": 500,
+          "description": "How often to refresh decorations to reflect time-based fading."
+        },
+        "recencyBias.useGitBlame": {
+          "type": "boolean",
+          "default": true,
+          "description": "Seed line ages from Git blame when opening tracked files."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^5.4.0"
+  }
+}
+
+
