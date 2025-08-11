@@ -10,7 +10,7 @@ This is just a vibe coded thing I wanted while I was working on something else, 
 
 ## Settings
 
-Add to your settings.json (these are the current defaults):
+You can add any of these to your settings.json to change them (these are the defautls shown here.)
 
 ```json
 {
