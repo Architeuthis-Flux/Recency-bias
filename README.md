@@ -96,14 +96,17 @@ Command line alternative:
 code --install-extension recency-bias-*.vsix
 ```
 
+Showing Newest
+<img width="1053" height="673" alt="Screenshot 2025-08-11 at 2 35 26 PM" src="https://github.com/user-attachments/assets/a07088e7-c7ee-4f4c-9ff3-2fb0a13bbddd" />
 
 
+Showing Oldest
+<img width="1033" height="549" alt="Screenshot 2025-08-11 at 2 33 41 PM" src="https://github.com/user-attachments/assets/21debedf-9123-49e6-8198-d0724e167b46" />
 
-<img width="673" height="808" alt="Screenshot 2025-08-11 at 1 25 20 PM" src="https://github.com/user-attachments/assets/6901839c-615d-4bbb-988d-67d6c7cc33a1" />
 
-<img width="878" height="931" alt="Screenshot 2025-08-11 at 1 15 52 PM" src="https://github.com/user-attachments/assets/71b774b6-07bc-44b6-a059-c869ba9ca9f4" />
+<img width="580" height="413" alt="Screenshot 2025-08-11 at 2 28 02 PM" src="https://github.com/user-attachments/assets/892e3d15-1a60-4e2f-894b-d31d998e3844" />
 
-<img width="505" height="1160" alt="Screenshot 2025-08-11 at 1 11 46 PM" src="https://github.com/user-attachments/assets/0219f57f-65dc-4586-a7d9-9e8404246194" />
 
-<img width="682" height="1098" alt="Screenshot 2025-08-11 at 1 13 58 PM" src="https://github.com/user-attachments/assets/eb8bca50-76fb-4b54-ab11-742416183a7f" />
+<img width="505" height="1160" alt="Screenshot 2025-08-11 at 1 11 46 PM" src="https://github.com/user-attachments/assets/0ecc0b98-764f-4c5c-bffe-0861e285ed7b" />
 
+<img width="663" height="736" alt="Screenshot 2025-08-11 at 1 11 03 PM" src="https://github.com/user-attachments/assets/5ef91eb8-d170-4a6b-97d3-3c1e6cfa1616" />
